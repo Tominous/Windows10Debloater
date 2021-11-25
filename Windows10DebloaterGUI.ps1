@@ -93,9 +93,9 @@ $global:Bloatware = @(
     "Dolby"                                             # Issue 78
 
     #Optional: Typically not removed but you can if you need to for some reason
-    #"Microsoft.Advertising.Xaml_10.1712.5.0_x64__8wekyb3d8bbwe"
-    #"Microsoft.Advertising.Xaml_10.1712.5.0_x86__8wekyb3d8bbwe"
-    #"Microsoft.BingWeather"
+    "Microsoft.Advertising.Xaml_10.1712.5.0_x64__8wekyb3d8bbwe"
+    "Microsoft.Advertising.Xaml_10.1712.5.0_x86__8wekyb3d8bbwe"
+    "Microsoft.BingWeather"
 )
 
 #Valuable Windows 10 AppX apps that most people want to keep. Protected from DeBloat All.
@@ -528,7 +528,7 @@ $CustomizeBlacklist.Add_Click( {
         $CustomizeForm.controls.AddRange(@($SaveList,$ListPanel))
 
         $SaveList.Add_Click( {
-               # $ErrorActionPreference = 'SilentlyContinue'
+                $ErrorActionPreference = 'SilentlyContinue'
 
                 '$global:WhiteListedApps = @(' | Out-File -FilePath $PSScriptRoot\custom-lists.ps1 -Encoding utf8
                 @($ListPanel.controls) | ForEach {
@@ -870,7 +870,7 @@ $RemoveAllBloatware.Add_Click( {
       
             #Disables scheduled tasks that are considered unnecessary 
             Write-Host "Disabling scheduled tasks"
-            #Get-ScheduledTask -TaskName XblGameSaveTaskLogon | Disable-ScheduledTask
+            Get-ScheduledTask -TaskName XblGameSaveTaskLogon | Disable-ScheduledTask
             Get-ScheduledTask -TaskName XblGameSaveTask | Disable-ScheduledTask
             Get-ScheduledTask -TaskName Consolidator | Disable-ScheduledTask
             Get-ScheduledTask -TaskName UsbCeip | Disable-ScheduledTask
@@ -934,7 +934,7 @@ $START_MENU_LAYOUT = @"
             Stop-Process -name explorer
 
             # Uncomment the next line to make clean start menu default for all new users
-            #Import-StartLayout -LayoutPath $layoutFile -MountPath $env:SystemDrive\
+            Import-StartLayout -LayoutPath $layoutFile -MountPath $env:SystemDrive\
 
             Remove-Item $layoutFile
         }
@@ -1299,7 +1299,7 @@ $DisableTelemetry.Add_Click( {
         
         #Disables scheduled tasks that are considered unnecessary 
         Write-Host "Disabling scheduled tasks"
-        #Get-ScheduledTask XblGameSaveTaskLogon | Disable-ScheduledTask
+        Get-ScheduledTask XblGameSaveTaskLogon | Disable-ScheduledTask
         Get-ScheduledTask XblGameSaveTask | Disable-ScheduledTask
         Get-ScheduledTask Consolidator | Disable-ScheduledTask
         Get-ScheduledTask UsbCeip | Disable-ScheduledTask
