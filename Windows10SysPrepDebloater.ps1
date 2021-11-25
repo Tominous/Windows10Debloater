@@ -190,7 +190,7 @@ Function Protect-Privacy {
     
     #Disables scheduled tasks that are considered unnecessary 
     Write-Output "Disabling scheduled tasks"
-    #Get-ScheduledTask -TaskName XblGameSaveTaskLogon | Disable-ScheduledTask -ErrorAction SilentlyContinue
+    Get-ScheduledTask -TaskName XblGameSaveTaskLogon | Disable-ScheduledTask -ErrorAction SilentlyContinue
     Get-ScheduledTask -TaskName XblGameSaveTask | Disable-ScheduledTask -ErrorAction SilentlyContinue
     Get-ScheduledTask -TaskName Consolidator | Disable-ScheduledTask -ErrorAction SilentlyContinue
     Get-ScheduledTask -TaskName UsbCeip | Disable-ScheduledTask -ErrorAction SilentlyContinue
@@ -244,8 +244,8 @@ Write-Output "Checking to see if any Whitelisted Apps were removed, and if so re
 FixWhitelistedApps
 Write-Output "Stopping telemetry, disabling unneccessary scheduled tasks, and preventing bloatware from returning."
 Protect-Privacy
-#Write-Output "Stopping Edge from taking over as the default PDF Viewer."
-#Stop-EdgePDF
+Write-Output "Stopping Edge from taking over as the default PDF Viewer."
+Stop-EdgePDF
 CheckDMWService
 CheckInstallService
 Write-Output "Finished all tasks."
